@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  plex-thumbs:
+    build: .
+    container_name: plex-thumbs
+    ports:
+      - "8000:8000"
+    volumes:
+      # Path to your local Plex "Media" directory
+      - ${PLEX_DATA_DIR_HOST:-/path/to/Plex Media Server}:/plex_data:ro
+      # Persist the local database (sync status, etc.)
+      - ./plex_data.db:/app/plex_data.db
+    environment:
+      - PLEX_URL=${PLEX_URL:-http://localhost:32400}
+      - PLEX_TOKEN=${PLEX_TOKEN}
+      - HUB_URL=https://api.plexthumbs.qzz.io
+      - GHOST_MEMBER_EMAIL=${GHOST_MEMBER_EMAIL}
+      - TMDB_API_KEY=${TMDB_API_KEY}
+      - AUTO_SYNC_HOURS=${AUTO_SYNC_HOURS:-6}
+    restart: unless-stopped

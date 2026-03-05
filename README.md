@@ -11,7 +11,20 @@ Plex Thumbs is a self-contained client for the Plex BIF Ecosystem. It runs on yo
 
 ## Setup
 
-### Run with Docker (Recommended)
+### 1. Configure Environment
+Set the following environment variables or create a `.env` file in the same directory as your `docker-compose.yml`:
+- `PLEX_URL`: Your local Plex server URL (e.g., `http://192.168.1.50:32400`).
+- `PLEX_TOKEN`: Your Plex API token.
+- `PLEX_DATA_DIR_HOST`: The host path to your "Plex Media Server" data folder.
+- `GHOST_MEMBER_EMAIL`: Your account email (for hub authorization).
+- `TMDB_API_KEY`: Your TMDB API key.
+
+### 2. Run with Docker Compose (Recommended)
+```bash
+docker-compose up -d
+```
+
+### 3. Run with Docker CLI (Alternative)
 ```bash
 docker run -d \
   --name plex-thumbs \
