@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+plexapi
+pydantic
+python-dotenv
+alembic
+requests
+apscheduler
