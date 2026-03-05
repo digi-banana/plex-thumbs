@@ -9,7 +9,7 @@ function App() {
 
   const fetchMedia = async () => {
     try {
-      const response = await fetch('https://plexthumbs.qzz.io/media');
+      const response = await fetch('/media');
       const data = await response.json();
       setMedia(data);
     } catch (err) {
@@ -20,7 +20,7 @@ function App() {
   const startScan = async () => {
     setLoading(true);
     try {
-      await fetch(`https://plexthumbs.qzz.io/scan?section_name=${section}`, { method: 'POST' });
+      await fetch(`/scan?section_name=${section}`, { method: 'POST' });
       alert("Scan started");
     } catch (err) { setError("Scan failed"); }
     setLoading(false);
@@ -28,14 +28,14 @@ function App() {
 
   const syncAll = async () => {
     try {
-      await fetch(`https://plexthumbs.qzz.io/sync-all`, { method: 'POST' });
+      await fetch(`/sync-all`, { method: 'POST' });
       alert("Mass sync started");
     } catch (err) { setError("Sync failed"); }
   };
 
   const syncItem = async (id) => {
     try {
-      await fetch(`https://plexthumbs.qzz.io/sync/${id}`, { method: 'POST' });
+      await fetch(`/sync/${id}`, { method: 'POST' });
     } catch (err) { setError("Sync failed"); }
   };
 

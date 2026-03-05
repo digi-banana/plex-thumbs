@@ -21,7 +21,7 @@ COPY backend/ ./backend/
 # Environment defaults
 ENV DATABASE_URL=sqlite:///./plex_data.db
 ENV PLEX_DATA_DIR=/plex_data
-ENV HUB_URL=https://plexthumbs.qzz.io
+ENV HUB_URL=https://api.plexthumbs.qzz.io
 
 EXPOSE 8000
 
