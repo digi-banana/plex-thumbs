@@ -83,13 +83,27 @@ def sync_all(background_tasks: BackgroundTasks,
     return {"message": f"Syncing {len(items)} items"}
 
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
-# ... after all other routes like @app.get("/media") etc ...
+# Static file paths
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+build_path = os.path.join(base_dir, "build")
+static_path = os.path.join(build_path, "static")
 
-# Mount React static files
-# This MUST be last to not override other routes
-build_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "build"))
-if os.path.exists(build_path):
-    app.mount("/", StaticFiles(directory=build_path, html=True), name="static")
-else:
-    print(f"Warning: Build directory {build_path} not found.")
+# Serve React static assets
+if os.path.exists(static_path):
+    app.mount("/static", StaticFiles(directory=static_path), name="static")
+
+@app.get("/{full_path:path}")
+async def serve_react(full_path: str):
+    # If the path exists as a file in build (like favicon.ico), serve it
+    file_path = os.path.join(build_path, full_path)
+    if os.path.exists(file_path) and os.path.isfile(file_path):
+        return FileResponse(file_path)
+    
+    # Otherwise, serve index.html for React Router to handle
+    index_path = os.path.join(build_path, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    
+    return {"error": "Not Found"}
