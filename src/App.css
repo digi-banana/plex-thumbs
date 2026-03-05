@@ -1,0 +1,114 @@
+:root {
+  --bg-color: #1a1a1a;
+  --header-bg: #2d2d2d;
+  --accent-color: #e5a00d; /* Plex Orange */
+  --text-color: #f0f0f0;
+  --border-color: #444;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.App-header {
+  background-color: var(--header-bg);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background: #333;
+  color: white;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: var(--accent-color);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+.table-container {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: #333;
+  color: var(--accent-color);
+}
+
+tr:hover {
+  background-color: #252525;
+}
+
+.path {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #aaa;
+}
+
+.hash {
+  font-family: monospace;
+  color: #88ccff;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.error {
+  background-color: #ff4444;
+  color: white;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 4px;
+}
